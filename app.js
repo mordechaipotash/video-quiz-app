@@ -42,52 +42,35 @@ function onYouTubeIframeAPIReady() {
     width: '640',
     videoId: videoId,
     events: {
-      onStateChange: onPlayerStateChange
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
     }
   });
 }
 
+function onPlayerReady(event) {
+  showNextQuestions();
+}
+
 function onPlayerStateChange(event) {
-  if (event.data === YT.PlayerState.PLAYING) {
-    const endTime = currentQuestion.endTime;
-    setTimeout(() => {
-      player.pauseVideo();
-      showNextQuestions();
-    }, (endTime - currentQuestion.startTime) * 1000);
+  if (event.data === YT.PlayerState.ENDED) {
+    showNextQuestions();
   }
 }
 
 function showNextQuestions() {
   if (remainingQuestions.length === 0) {
     document.getElementById('questions').innerHTML = 'No more questions available.';
+    document.getElementById('questionTitle').innerHTML = '';
     return;
   }
 
   const questionElements = [];
 
   for (let i = 0; i < 2 && remainingQuestions.length > 0; i++) {
-    const randomIndex = Math.floor(Math.random() * remainingQuestions.length);
-    const question = remainingQuestions[randomIndex];
-    remainingQuestions.splice(randomIndex, 1);
-
-    const questionElement = document.createElement('div');
-    questionElement.className = 'question';
-    questionElement.textContent = question.text;
-    questionElement.addEventListener('click', () => playQuestion(question));
-    questionElements.push(questionElement);
-  }
-
-  document.getElementById('questions').innerHTML = '';
-  questionElements.forEach(element => {
-    document.getElementById('questions').appendChild(element);
-  });
-}
-
-function playQuestion(question) {
-  currentQuestion = question;
-  player.seekTo(question.startTime);
-  player.playVideo();
-  remainingQuestions = remainingQuestions.filter(q => q !== question);
-}
-
-showNextQuestions();
+    const question = remainingQuestions[i];
+    const button = document.createElement('button');
+    button.className = 'button';
+    button.textContent = `${question.text} (${question.startTime}-${question.endTime})`;
+    button.onclick = () => playQuestion(question);
+    question
