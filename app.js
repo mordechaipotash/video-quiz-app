@@ -38,8 +38,8 @@ let remainingQuestions = [...questions];
 
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
-    height: '360',
-    width: '640',
+    height: '100%',
+    width: '100%',
     videoId: videoId,
     events: {
       'onReady': onPlayerReady,
@@ -76,17 +76,18 @@ function showNextQuestions() {
     questionElements.push(button);
   }
 
-  document.getElementById('questions').innerHTML = '';
-  questionElements.forEach(element => {
-    document.getElementById('questions').appendChild(element);
-  });
+  const questionsContainer = document.getElementById('questions');
+  questionsContainer.innerHTML = '';
+  questionElements.forEach(element => questionsContainer.appendChild(element));
 }
 
 function playQuestion(question) {
   currentQuestion = question;
-  remainingQuestions = remainingQuestions.filter(q => q !== question);
+  document.getElementById('questionTitle').textContent = question.text;
   player.seekTo(question.startTime);
   player.playVideo();
-  document.getElementById('questionTitle').textContent = question.text;
+  remainingQuestions = remainingQuestions.filter(q => q !== question);
   document.getElementById('questions').innerHTML = '';
 }
+
+showNextQuestions();
