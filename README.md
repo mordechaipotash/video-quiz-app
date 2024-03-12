@@ -18,3 +18,18 @@ To get a local copy up and running, follow these simple steps.
 1. Clone the repo
    ```sh
    git clone https://github.com/your_username_/video-quiz-app.git
+Open index.html in your web browser to launch the app.
+Usage
+After opening the Video Quiz App in a web browser, users are presented with a video and a set of questions related to the video content. Users can select questions to answer while the video pauses, making the learning experience interactive and engaging.
+
+Contributing
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
+
+Fork the Project
+Create your Feature Branch (git checkout -b feature/AmazingFeature)
+Commit your Changes (git commit -m 'Add some AmazingFeature')
+Push to the Branch (git push origin feature/AmazingFeature)
+Open a Pull Request
+License
+Distributed under the MIT License. See LICENSE for more information.
+
