@@ -73,4 +73,20 @@ function showNextQuestions() {
     button.className = 'button';
     button.textContent = `${question.text} (${question.startTime}-${question.endTime})`;
     button.onclick = () => playQuestion(question);
-    question
+    questionElements.push(button);
+  }
+
+  document.getElementById('questions').innerHTML = '';
+  questionElements.forEach(element => {
+    document.getElementById('questions').appendChild(element);
+  });
+}
+
+function playQuestion(question) {
+  currentQuestion = question;
+  remainingQuestions = remainingQuestions.filter(q => q !== question);
+  player.seekTo(question.startTime);
+  player.playVideo();
+  document.getElementById('questionTitle').textContent = question.text;
+  document.getElementById('questions').innerHTML = '';
+}
