@@ -1,0 +1,25 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 20px;
+  }
+  
+  #app {
+	max-width: 600px;
+	margin: 0 auto;
+  }
+  
+  #questions {
+	margin-bottom: 20px;
+  }
+  
+  .question {
+	background-color: #f1f1f1;
+	padding: 10px;
+	margin-bottom: 10px;
+	cursor: pointer;
+  }
+  
+  .question:hover {
+	background-color: #e0e0e0;
+  }
