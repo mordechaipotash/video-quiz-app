@@ -4,13 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Video Quiz App</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="app">
     <h1>Video Quiz App</h1>
-    <div id="questions"></div>
-    <div id="player"></div>
+    <div id="questionTitle" class="question-title"></div>
+    <div id="playerWrapper">
+      <div id="player"></div>
+    </div>
+    <div id="questions" class="questions-container"></div>
   </div>
 
   <script src="https://www.youtube.com/iframe_api"></script>
